@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>3D Models, Lights & Shadows</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene background="color: white">
+        <a-camera camera look-controls wasd-controls position="2 9 0"></a-camera>
+
+        <a-assets timeout="10000">
+            <a-asset-item id="tiger_model" src="models/sumatran_tiger/scene.gltf"></a-asset-item>
+            <a-asset-item id="giraffe_model" src="models/giraffe/scene.gltf"></a-asset-item>
+            <a-asset-item id="photographer_model" src="models/photographer/scene.gltf"></a-asset-item>
+            <a-asset-item id="old_tree_model" src="models/old_tree/scene.gltf"></a-asset-item>
+            <a-asset-item id="wooden_fence_model" src="models/wooden_fence/scene.gltf"></a-asset-item>
+        </a-assets>
+
+        <a-sky src="sky.jpg"></a-sky>
+
+        <a-entity light="type: ambient; intensity: 0.5;"></a-entity>
+        <a-entity animation="property: rotation; to: 0 360 0; easing: linear; loop: true; dur: 60000;">
+            <a-entity
+                light="type: directional; angle: 1; castShadow: true; intensity: 1; distance: 100; color: yellow; decay: 2;" position="-100 18 20">
+            </a-entity>
+        </a-entity>
+
+        <a-circle radius="25" position="0 8 0" rotation="-90 0 0" shadow="receive: true;" visible="true" color="green">
+        </a-circle>
+
+        <a-entity>
+            <a-entity position="5 8.3 0" rotation="0 -20 0" shadow="cast: true; receive: false"
+                gltf-model="#tiger_model"></a-entity>
+        </a-entity>
+
+        <a-entity>
+            <a-entity position="2 10.25 0" rotation="0 20 0" scale="0.5 0.5 0.5" shadow="cast: true; receive: false;"
+                gltf-model="#giraffe_model"></a-entity>
+        </a-entity>
+
+        <a-entity>
+            <a-entity position="3 8 5" rotation="0 180 0" scale="0.25 0.25 0.25" shadow="cast: true; receive: false;"
+                gltf-model="#photographer_model"></a-entity>
+        </a-entity>
+
+        <a-entity>
+            <a-entity position="4 8.6 -3" shadow="cast: true; receive: false;" rotation="0 180 0"
+                gltf-model="#old_tree_model"></a-entity>
+            <a-entity position="2 8.6 -3" shadow="cast: true; receive: false;" rotation="0 180 0"
+                gltf-model="#old_tree_model"></a-entity>
+            <a-entity position="6 8.6 -3" shadow="cast: true; receive: false;" rotation="0 180 0"
+                gltf-model="#old_tree_model"></a-entity>
+        </a-entity>
+    </a-scene>
+</body>
+
+</html>
